@@ -1,0 +1,29 @@
+{
+  "plasma": {
+    "organic-api-routes": {
+      "log": true
+    },
+    "organic-express-api-doc": {
+      "source": "node_modules/organic-express-api-doc",
+      "dna": {
+        "organic-api-routes": "@processes.index.plasma.organic-api-routes"
+      },
+      "reactOn": ["ExpressServer"],
+      "mountOn": "/api-docs",
+      "docsMetadata": {
+        "source": "docs/api"
+      },
+      "log": true,
+      "liveTemplateReload": false
+    }
+  },
+  "membrane": {
+    "bunyan-output": {
+      "bunyanInit": "context/initializers/bunyan-development"
+    },
+    "organic-express-server": {
+      "logRunning": true,
+      "useErrorHandler": true
+    }
+  }
+}

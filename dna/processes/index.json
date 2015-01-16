@@ -1,0 +1,69 @@
+{
+  "plasma": {
+    "organic-api-routes": {
+      "source": "node_modules/organic-express-routes",
+      "reactOn": [
+        "ExpressServer"
+      ],
+      "pattern": "/**/*.js",
+      "path": "context/routes/api",
+      "helpers": "context/routes/api-helpers",
+      "mount": "/api",
+      "emitReady": "ApiRoutesReady"
+    },
+    "organic-express-response": {
+      "source": "node_modules/organic-express-response",
+      "reactOn": [
+        "ExpressServer",
+        "ApiRoutesReady",
+        "SiteRoutesReady"
+      ]
+    },
+    "organic-socketio-server": {
+      "source": "node_modules/organic-socketio-server",
+      "attachToChemical": {
+        "type": "ExpressServer",
+        "propertyName": "server"
+      },
+      "emit": {
+        "ready": "SocketIO",
+        "connection": "SocketIOConnection"
+      }
+    }
+  },
+  "membrane": {
+    "console": {
+      "source": "node_modules/organic-console",
+      "emitEvery": {
+        "type": "console"
+      }
+    },
+    "bunyan-output": {
+      "source": "node_modules/organic-bunyan-output",
+      "reactOn": "console",
+      "bunyan": {
+        "name": "master"
+      }
+    },
+    "organic-express-server": {
+      "source": "node_modules/organic-express-server",
+      "forceConnectionsDestroyOnClose": true,
+      "port": 1337,
+      "initScript": "context/initializers/express-app",
+      "emitReady": "ExpressServer",
+      "cookie_secret": "stem",
+      "views": "context/pages",
+      "uploadsDir": "uploads",
+      "viewEngine": {
+        "ext": "html",
+        "name": "ejs"
+      },
+      "expressSetupDoneOnce": [
+        "ExpressServer",
+        "ApiRoutesReady",
+        "SiteRoutesReady",
+        "StaticPagesReady"
+      ]
+    }
+  }
+}
