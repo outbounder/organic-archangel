@@ -1,9 +1,22 @@
 var fs = require("fs")
 var path = require("path")
 
-var cwd = path.normalize(path.join(__dirname, "/../"))
-var target = path.join(cwd, "server.js")
-var pidFile = path.join(cwd, target+".pid")
+module.exports = function(done){
+  var cwd = path.normalize(path.join(__dirname, "/../"))
+  var target = path.join(cwd, "server.js")
+  var pidFile = target+".pid"
 
-if(fs.existsSync(pidFile))
-  process.kill(parseInt(fs.readFileSync(pidFile).toString())
+  fs.exists(pidFile, function(found){
+
+    if(found) {
+      var pid = parseInt(fs.readFileSync(pidFile).toString())
+      process.kill(pid)
+      fs.unlinkSync(pidFile)
+    }
+
+    done && done()
+  })  
+}
+
+if(!module.parent)
+  module.exports()

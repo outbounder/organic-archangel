@@ -15,8 +15,7 @@
       "source": "node_modules/organic-express-response",
       "reactOn": [
         "ExpressServer",
-        "ApiRoutesReady",
-        "SiteRoutesReady"
+        "ApiRoutesReady"
       ]
     },
     "organic-socketio-server": {
@@ -51,18 +50,9 @@
       "port": 1337,
       "initScript": "context/initializers/express-app",
       "emitReady": "ExpressServer",
-      "cookie_secret": "stem",
-      "views": "context/pages",
-      "uploadsDir": "uploads",
-      "viewEngine": {
-        "ext": "html",
-        "name": "ejs"
-      },
       "expressSetupDoneOnce": [
         "ExpressServer",
-        "ApiRoutesReady",
-        "SiteRoutesReady",
-        "StaticPagesReady"
+        "ApiRoutesReady"
       ]
     }
   }

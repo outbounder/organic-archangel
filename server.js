@@ -30,6 +30,9 @@ module.exports.prototype.build = function(dna) {
   // resolve any referrences
   resolveReferences(dna)
 
+  // set dynamic port
+  dna.processes.index.membrane["organic-express-server"].port = process.env.PORT || dna.processes.index.membrane["organic-express-server"].port
+
   // # construct core
   var nucleus = new Nucleus(this.plasma, dna)
 

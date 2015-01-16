@@ -26,6 +26,7 @@ module.exports.prototype.runAngel = function(cmd, done) {
   
   angel.cmdData.remote = this.cell.cellData.remote
   angel.cmdData.cwd = path.join(this.cell.cellData.cwd, ".archangel")
+  angel.cmdData.sourceNode = this.cell.cellData.sourceNode
 
   cellcmds(angel)
   angel.do(cmd+" "+path.join(__dirname, "archangel.cell.json"), function(err){
@@ -47,7 +48,7 @@ module.exports.prototype.fetchResults = function(done) {
   request.post({
     uri: this.fetchResultsEndpoint,
     json: {
-      cwd: this.cell.cwd
+      cwd: this.cell.cellData.cwd
     }
   }, function(err, res, body){
     if(err) return done(err)

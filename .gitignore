@@ -2,3 +2,5 @@ node_modules
 /build
 /tests/uploads
 /uploads
+*.err
+*.out
