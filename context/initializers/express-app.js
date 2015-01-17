@@ -2,7 +2,6 @@ var express = require("express")
 var bodyParser = require("body-parser")
 var path = require("path")
 var CookieParser = require('cookie-parser')
-var errorface = require('errorface')
 var methodOverride = require('method-override')
 
 module.exports = function(plasma, dna, next) {
@@ -39,11 +38,7 @@ module.exports = function(plasma, dna, next) {
   require("../routes/params")(app)
   
   plasma.on(dna.expressSetupDoneOnce, function(){
-    
     require("../routes/responders")(app)
-
-    if(dna.useErrorHandler)
-      app.use(errorface.errorHandler())
   })
   next(null, app)
 }

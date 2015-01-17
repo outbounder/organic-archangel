@@ -1,5 +1,0 @@
-{
-  "install": "mkdir -p {cwd} && cd {cwd} && {sourceNode} && npm install outbounder/organic-archangel && node ./node_modules/organic-archangel/bin/spawn.js",
-  "uninstall": "{sourceNode} && cd {cwd} && node ./node_modules/organic-archangel/bin/kill.js && rm -rf {cwd}",
-  "exists": "test -e {cwd}"
-}

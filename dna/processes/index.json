@@ -47,7 +47,7 @@
     "organic-express-server": {
       "source": "node_modules/organic-express-server",
       "forceConnectionsDestroyOnClose": true,
-      "port": 1337,
+      "port": 33333,
       "initScript": "context/initializers/express-app",
       "emitReady": "ExpressServer",
       "expressSetupDoneOnce": [

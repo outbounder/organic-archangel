@@ -2,7 +2,7 @@ var os = require("os")
 
 module.exports = function(){
   return {
-    "GET": function(req, res, next) {
+    "POST": function(req, res, next) {
       res.body = {
         os: {
           cpus: os.cpus(),
