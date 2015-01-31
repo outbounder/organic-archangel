@@ -10,7 +10,11 @@ module.exports = function(done){
 
     if(found) {
       var pid = parseInt(fs.readFileSync(pidFile).toString())
-      process.kill(pid)
+      try {
+        process.kill(pid)
+      } catch(err){
+        console.error(err)
+      }
       fs.unlinkSync(pidFile)
     }
 
